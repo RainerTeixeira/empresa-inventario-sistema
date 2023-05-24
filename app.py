@@ -1,17 +1,17 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_mysqldb import MySQL
-import MySQLdb.cursors  # Importando o cursors do MySQLdb
+import MySQLdb.cursors
 
 app = Flask(__name__)
 
-# Database configuration
+# Configuração do banco de dados
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'inventario'
 mysql = MySQL(app)
 
-# Session configuration
+# Configuração da sessão
 app.secret_key = 'chave_secreta'
 
 @app.route('/', methods=['GET', 'POST'])
@@ -20,13 +20,11 @@ def login():
         login = request.form['username']
         senha = request.form['password']
 
-        # Usando o DictCursor aqui
         cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cur.execute("SELECT * FROM funcionarios WHERE login=%s AND senha=%s", (login, senha))
         user = cur.fetchone()
 
         if user:
-            # Agora você pode acessar os valores por nome de coluna
             session['login'] = user['login']
             session['nivel_permissao'] = user['nivel_permissao']
             return redirect('/painel')

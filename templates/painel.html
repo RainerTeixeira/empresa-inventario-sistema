@@ -1,175 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Painel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F4F4F4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-        }
-
-        .sidebar {
-            width: 300px;
-            background-color: #333;
-            color: #fff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            transition: width 0.3s ease;
-            overflow: hidden;
-        }
-
-        .sidebar.collapsed {
-            width: 50px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 20px 0;
-            margin: 0;
-        }
-
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 15px 20px;
-            transition: padding 0.3s ease;
-        }
-
-        .sidebar ul li a .icon {
-            margin-right: 10px;
-        }
-
-        .sidebar.collapsed ul li a .icon {
-            margin-right: 0;
-        }
-
-        .sidebar ul li a .text {
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar.collapsed ul li a .text {
-            opacity: 0;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: #444;
-        }
-
-        .navbar {
-            background-color: #333;
-            color: #FFF;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 300px;
-            width: calc(100% - 300px);
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        .navbar.collapsed {
-            left: 50px;
-            width: calc(100% - 50px);
-        }
-
-        .navbar button {
-            border: none;
-            background-color: #F44336;
-            color: #FFF;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar button:hover {
-            background-color: #E31B0C;
-        }
-
-        .logout-message {
-            text-align: center;
-            margin-top: 50px;
-            padding-left: 300px; /* Padding equal to sidebar width */
-            transition: padding-left 0.3s ease;
-        }
-
-        .logout-message.collapsed {
-            padding-left: 50px; /* Padding equal to collapsed sidebar width */
-        }
-
-        h1 {
-            color: #009688;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        a, button {
-            text-decoration: none;
-            background-color: #F44336;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        a:hover, button:hover {
-            background-color: #E31B0C;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Admin Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu-style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/menu.js') }}"></script>
 </head>
 <body>
-    <!-- Barra lateral -->
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="#"><span class="icon">📂</span><span class="text">Item 1</span></a></li>
-            <li><a href="#"><span class="icon">📂</span><span class="text">Item 2</span></a></li>
-            <li><a href="#"><span class="icon">📂</span><span class="text">Item 3</span></a></li>
-        </ul>
+    <!--wrapper start-->
+    <div class="wrapper">
+        <!--sidebar start-->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <center class="profile">
+                    <img src="{{ url_for('static', filename='img/avatar.png') }}" alt=""><p>   </p>
+                </center>
+                <li class="item">
+                    <a href="" class="menu-btn"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+                </li>
+                <li class="item" id="profile">
+                    <a href="#profile" class="menu-btn">
+                        <i class="fas fa-user-circle"></i><span>Profile <i class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-image"></i><span>Picture</span></a>
+                        <a href="#"><i class="fas fa-address-card"></i><span>Info</span></a>
+                    </div>
+                </li>
+                <li class="item" id="messege">
+                    <a href="#messege" class="menu-btn">
+                        <i class="fas fa-envelope"></i><span>Messege <i class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-envelope"></i><span>New</span></a>
+                        <a href="#"><i class="fas fa-envelope-square"></i><span>Sent</span></a>
+                        <a href="#"><i class="fas fa-exclamation-circle"></i><span>Spam</span></a>
+                    </div>
+                </li>
+                <li class="item" id="setting">
+                    <a href="#setting" class="menu-btn">
+                        <i class="fas fa-cog"></i><span>Setting <i class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-lock"></i><span>Password</span></a>
+                        <a href="#"><i class="fas fa-language"></i><span>Language</span></a>
+                    </div>
+                </li>
+                <li class="item">
+                    <a href="" class="menu-btn"><i class="fas fa-info-circle"></i><span>About</span></a>
+                </li>
+            </div>
+        </div>
+        <!--sidebar end-->
+        <!--header menu start-->
+        <div class="header">
+            <div class="header-menu">
+                <div class="title"><span class="title-hide">  <span class="sec-span">  </span></span></div>
+                <div class="sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href=""><i class="fas fa-search"></i></a></li>
+                    <li><a href=""><i class="fas fa-bell"></i></a></li>
+                    <li><a href=""><i class="fas fa-power-off"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!--header menu end-->
+        <!--main container start-->
+        <div class="main-container"></div>
+        <!--main container end-->
     </div>
-
-    <!-- Barra de navegação -->
-    <div class="navbar" id="navbar">
-        <button onclick="toggleSidebar()">☰</button>
-        <div class="navbar-title">Painel</div>
-    </div>
-
-    <!-- Conteúdo principal -->
-    <div class="logout-message" id="logoutMessage">
-        <h1>Bem-vindo, {{ username }}!</h1>
-        <p>Nível de permissão: {{ nivel_permissao }}</p>
-        <!-- Botão de logout -->
-        <a href="/logout">Logout</a>
-    </div>
-
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            var navbar = document.getElementById("navbar");
-            var logoutMessage = document.getElementById("logoutMessage");
-            sidebar.classList.toggle("collapsed");
-            navbar.classList.toggle("collapsed");
-            logoutMessage.classList.toggle("collapsed");
-        }
-    </script>
+    <!--wrapper end-->
 </body>
 </html>
