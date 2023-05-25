@@ -1,12 +1,4 @@
 
-/** No ©copyright issues **/
-/** But we will be happy to see you whenever you use our code(^_^) **/
-/** Designed by @BlackX-Lolipop **/
-/** Content available by @BlackX-732 **/
-/** Content available @ https://github.com/BlackX-732/AwesomeMenu **/
-/** Version 21.2.7 **/
-/** https://facebook.com/BlackX-732 **/
-/** https://twitter.com/ **/
 
 
 
@@ -29,7 +21,7 @@ body{
 
 .wrapper .header{
     
-    background: #ff2051;
+    background: #f93e00;
     position: fixed;
     width: calc(100% - 0%);/*If we increase .sidebar width from 250px to greater it will be improve automatically*/
     height: 50px;
@@ -92,6 +84,7 @@ body{
     border-radius: 50%;
     transition: 0.3s;
     transition-property: background,color;
+    
 }
 
 .wrapper .header .header-menu ul li a:hover{
@@ -103,7 +96,7 @@ body{
 
 .wrapper .sidebar{
     z-index: 1; /* indexing sidebar @ z direction */
-    background: #ff2051;
+    background: #f93e00;
     position: fixed;
     top: 50px;
     width: 250px;

@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        #search-bar {
+            padding: 10px;
+            width: 100%;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        .search-container button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .search-container button i {
+            font-size: 1em;
+        }
+    </style>    
 </head>
 <body>
     <!--wrapper start-->
@@ -21,36 +45,16 @@
                     <a href="" class="menu-btn"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
                 </li>
                 <li class="item" id="profile">
-                    <a href="#profile" class="menu-btn">
-                        <i class="fas fa-user-circle"></i><span>Profile <i class="fas fa-chevron-down drop-down"></i></span>
-                    </a>
-                    <div class="sub-menu">
-                        <a href="#"><i class="fas fa-image"></i><span>Picture</span></a>
-                        <a href="#"><i class="fas fa-address-card"></i><span>Info</span></a>
-                    </div>
-                </li>
-                <li class="item" id="messege">
-                    <a href="#messege" class="menu-btn">
-                        <i class="fas fa-envelope"></i><span>Messege <i class="fas fa-chevron-down drop-down"></i></span>
-                    </a>
-                    <div class="sub-menu">
-                        <a href="#"><i class="fas fa-envelope"></i><span>New</span></a>
-                        <a href="#"><i class="fas fa-envelope-square"></i><span>Sent</span></a>
-                        <a href="#"><i class="fas fa-exclamation-circle"></i><span>Spam</span></a>
-                    </div>
-                </li>
-                <li class="item" id="setting">
-                    <a href="#setting" class="menu-btn">
-                        <i class="fas fa-cog"></i><span>Setting <i class="fas fa-chevron-down drop-down"></i></span>
-                    </a>
-                    <div class="sub-menu">
-                        <a href="#"><i class="fas fa-lock"></i><span>Password</span></a>
-                        <a href="#"><i class="fas fa-language"></i><span>Language</span></a>
-                    </div>
+  
                 </li>
                 <li class="item">
-                    <a href="" class="menu-btn"><i class="fas fa-info-circle"></i><span>About</span></a>
+                    <a href="" class="menu-btn"><i class="fas fa-info-circle"></i><span>Sobre</span></a>
                 </li>
+                <!-- Tabela adicionada -->
+                <li class="item">
+                    <a href="" class="menu-btn"><i class="fas fa-table"></i><span>Tabela</span></a>
+                </li>
+                <!-- Fim da tabela adicionada -->
             </div>
         </div>
         <!--sidebar end-->
@@ -61,18 +65,67 @@
                 <div class="sidebar-btn">
                     <i class="fas fa-bars"></i>
                 </div>
+                <form class="search-container">
+                    <input type="text" id="search-bar" placeholder="Buscar..."></input>
+                    <button type="submit"><i></i></button>
+                </form>
                 <ul>
-                    <li><a href=""><i class="fas fa-search"></i></a></li>
-                    <li><a href=""><i class="fas fa-bell"></i></a></li>
-                    <li><a href=""><i class="fas fa-power-off"></i></a></li>
+                    <div><li><a href=""><i class="fas fa-bell"></i></a></li></div>&nbsp;&nbsp;
+                    <div></div><li><a href=""><i class="fas fa-power-off"></i></a></li></div>
                 </ul>
             </div>
         </div>
         <!--header menu end-->
         <!--main container start-->
-        <div class="main-container"></div>
+        <div class="main-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Senha</th>
+                        <th>Chave</th>
+                        <th>Local da Chave</th>
+                        <th>ID do Funcionário</th>
+                        <th>ID do Alarme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for funcionario in funcionarios %}
+                    <tr>
+                        <td>{{ funcionario.id }}</td>
+                        <td>{{ funcionario.nome }}</td>
+                        <td>{{ funcionario.email }}</td>
+                        <td>{{ funcionario.senha }}</td>
+                        <td>{{ funcionario.chave }}</td>
+                        <td>{{ funcionario.local_chave }}</td>
+                        <td>{{ funcionario.funcionarios_id }}</td>
+                        <td>{{ funcionario.alarmes_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+ 
+            
+
+
+
+
+
+
+
+
+        </div>
         <!--main container end-->
     </div>
     <!--wrapper end-->
 </body>
+
+
+
+
+
 </html>

@@ -15,6 +15,8 @@ mysql = MySQL(app)
 app.secret_key = 'chave_secreta'
 
 @app.route('/', methods=['GET', 'POST'])
+
+
 def login():
     if request.method == 'POST':
         login = request.form['username']
@@ -30,22 +32,32 @@ def login():
             return redirect('/painel')
         else:
             return render_template('login.html', error='Usuário ou senha incorretos.')
-    
+
     return render_template('login.html')
+
 
 @app.route('/painel')
 def painel():
     if 'login' in session:
         login = session['login']
         nivel_permissao = session['nivel_permissao']
-        return render_template('painel.html', login=login, nivel_permissao=nivel_permissao)
+
+        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM funcionarios")
+        funcionarios = cur.fetchall()
+
+        return render_template('painel.html', login=login, nivel_permissao=nivel_permissao, funcionarios=funcionarios)
     else:
         return redirect('/')
+
+
+
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
